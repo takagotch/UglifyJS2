@@ -25,7 +25,7 @@ function read(url) {
 module.exports = function(url, callback) {
   var result = read(url);
   result.on("error", function(e) {
-    if () return callback(e);
+    if (e.code != "ENOENT") return callback(e);
     var options = parse(url);
     options.rejectUnauthorized = false;
     require(options.protocol.slice(0, -1)).get(options, function(res) {
